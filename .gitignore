@@ -24,3 +24,6 @@ hs_err_pid*
 
 # BIN dir
 bin/
+
+# Include LIB Dir
+!lib/*
