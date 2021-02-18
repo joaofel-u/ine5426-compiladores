@@ -1,0 +1,1 @@
+include $(BUILDDIR)/makefile.compile
