@@ -4,25 +4,18 @@ lexer grammar lcc;
     package main.antlr;
 }
 
-channels {
-	ERROR
-}
-
-options {
-	superClass = T1Lexer;
-}
-
+// mesmo se bota isso como fragment, não está gerando todos os arquivos
 Program: (Statement | Funclist)?;
 
 Funclist: Funcdef Funclist | Funcdef;
 
-Funcdef: 'def' Ident '(' Paramlist ')' '{' Statelist '}';
+Funcdef: 'def' Ident '(' Paramlist? ')' '{' Statelist '}';
 
 Paramlist:
 	(
-		('int' | 'float' | 'string') Ident ',' Paramlist
+		('int' | 'float' | 'string') Ident ',' Paramlist?
 		| ( 'int' | 'float' | 'string') Ident
-	)?;
+	);
 
 Statement:
 	(
@@ -42,9 +35,9 @@ Vardecl: ('int' | 'float' | 'string') Ident ('[' Intconstant ']')*;
 
 Atribstat: Lvalue '=' ( Expression | Allocexpression | Funcall);
 
-Funcall: Ident '(' Paramlistcall ')';
+Funcall: Ident '(' Paramlistcall? ')';
 
-Paramlistcall: ( Ident ',' Paramlistcall | Ident)?;
+Paramlistcall: ( Ident ',' Paramlistcall? | Ident);
 
 Printstat: 'print' Expression;
 
@@ -80,15 +73,15 @@ Factor: (
 		| Stringconstant
 		| 'null'
 		| Lvalue
-		| (Numexpression)
+		| '(' Numexpression ')'
 	);
 
 Lvalue: Ident ('[' Numexpression ']')*;
 
 fragment Ident: ([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9])*;
 
-fragment Intconstant: ([0-9])*;
+fragment Intconstant: ([0-9])+;
 
-fragment Floatconstant: ([0-9])* ('.' ([0-9])*)?;
+fragment Floatconstant: ([0-9])+ ('.' ([0-9])*)?;
 
-fragment Stringconstant: ([a-z] | [A-Z])*;
+fragment Stringconstant: ([a-z] | [A-Z])+;
