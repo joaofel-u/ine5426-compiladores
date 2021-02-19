@@ -43,7 +43,7 @@ Printstat: 'print' Expression;
 
 Readstat: 'read' Lvalue;
 
-Returnstat: 'return';
+fragment Returnstat: 'return';
 
 Ifstat: 'if' '(' Expression ')' Statement ('else' Statement)?;
 
