@@ -4,6 +4,7 @@ export SRCDIR=$(ROOTDIR)/src
 export BINDIR=$(ROOTDIR)/bin
 export LIBDIR=$(ROOTDIR)/lib
 export BUILDDIR=$(ROOTDIR)/build
+export EXAMPLESDIR=$(ROOTDIR)/examples
 export ANTLRFILES=$(SRCDIR)/main/antlr
 
 # ANTLR
@@ -27,6 +28,11 @@ ifneq (,$(wildcard $(lib)/*))
     CLASSPATH=$(TMPCLASSPATH):$(subst $(space),:,$(foreach jar,$(wildcard $(LIBDIR)/*.jar),$(realpath $(jar))))
 endif
 
+# Parameters
+export GRAMMAR ?= lcc
+
+GRAMMARTMP = $(EXAMPLESDIR)/$(GRAMMAR)/$(GRAMMAR).g4
+
 # Rules
 default: all
 
@@ -35,7 +41,12 @@ run: $(BINDIR)/main/java/Main.class
 	java $(JFLAGS) main.java.Main
 
 all: clean make-dirs
+ifneq ("$(wildcard $(GRAMMARTMP))","")
+	cp $(GRAMMARTMP) $(ANTLRFILES)
 	$(MAKE) -C src all
+else
+	echo Invalid Grammar Name!
+endif
 
 make-dirs:
 	@mkdir -p $(BINDIR)
