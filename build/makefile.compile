@@ -1,2 +1,2 @@
-all: $(wildcard *.java)
+all:
 	$(JC) $(JCFLAGS) $(CURDIR)/$(wildcard *.java)
