@@ -30,6 +30,7 @@ endif
 
 # Parameters
 export GRAMMAR ?= lcc
+export ARGS ?=
 
 GRAMMARTMP = $(EXAMPLESDIR)/$(GRAMMAR)/$(GRAMMAR).g4
 
@@ -38,11 +39,11 @@ default: all
 
 run: $(BINDIR)/main/java/Main.class
 	cd $(BINDIR)
-	java $(JFLAGS) main.java.Main
+	java $(JFLAGS) main.java.Main $(ARGS)
 
 all: clean make-dirs
 ifneq ("$(wildcard $(GRAMMARTMP))","")
-	cp $(GRAMMARTMP) $(ANTLRFILES)
+	cp $(GRAMMARTMP) $(ANTLRFILES)/MyGrammar.g4
 	$(MAKE) -C src all
 else
 	echo Invalid Grammar Name!

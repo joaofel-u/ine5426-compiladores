@@ -1,25 +1,8 @@
-grammar basic_gramm;
+lexer grammar MyGrammar;
 
 @header {
     package main.antlr;
 }
-
-expr
-        : expr_c T_EOF
-        ;
-
-expr_c
-        : termo ((T_mais | T_menos) termo)*
-        ;
-
-termo
-        : fator ((T_vezes | T_divi) fator)*
-        ;
-
-fator
-        : (T_num | T_id)
-        ;
-
 
 T_EOF
         : ';'
@@ -50,5 +33,4 @@ T_id
         ;
 
 T_space
-        : ' ' | '\t' | '\n' | '\r'
-        ;
+        : (' ' | '\t' | '\n' | '\r') -> skip ;
