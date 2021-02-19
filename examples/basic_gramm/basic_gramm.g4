@@ -1,4 +1,4 @@
-grammar gramm;
+grammar basic_gramm;
 
 @header {
     package main.antlr;

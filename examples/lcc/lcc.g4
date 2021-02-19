@@ -1,4 +1,8 @@
-lexer grammar t1_input;
+lexer grammar lcc;
+
+@header {
+    package main.antlr;
+}
 
 channels {
 	ERROR
