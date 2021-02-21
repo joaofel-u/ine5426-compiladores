@@ -84,4 +84,4 @@ fragment Intconstant: ([0-9])+;
 
 fragment Floatconstant: ([0-9])+ ('.' ([0-9])*)?;
 
-fragment Stringconstant: ([a-z] | [A-Z])+;
+fragment Stringconstant: ([a-z] | [A-Z] | [0-9] | ' ' | ':' | ' !', ',', '.', '-')*;
