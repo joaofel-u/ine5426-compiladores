@@ -104,6 +104,5 @@
     print produtos[i];
   }
 
-  print "Total da sua compra foi:";
-  print soma;
+  print "Total da sua compra foi:" + soma + "reais";
 }
