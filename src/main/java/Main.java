@@ -28,6 +28,7 @@ class Main {
             MyGrammar myLexer;
             SymbolTable symbolTable;
             Vocabulary vocabulary;
+            int lastLine;
 
             myLexer = new MyGrammar(CharStreams.fromFileName(dir+filename));
             vocabulary = myLexer.getVocabulary();
@@ -36,14 +37,18 @@ class Main {
 
             System.out.println("-------------LIST OF TOKENS-------------");
 
+            lastLine = 1;
+
             /* Reads all tokens from the input file. */
             do {
                 Token token;
                 String tokenTypeName;
+                int presentLine;
 
                 /* Get the next token. */
                 token = myLexer.nextToken();
                 tokenTypeName = vocabulary.getSymbolicName(token.getType());
+                presentLine = token.getLine();
 
                 /* EOF? */
                 if (token.getType() == Token.EOF)
@@ -56,6 +61,12 @@ class Main {
                  **/
                 if (tokenTypeName == "Ident")
                     symbolTable.addLexeme(token);
+
+                /* Breaks line? */
+                if (presentLine != lastLine) {
+                    System.out.println("");
+                    lastLine = presentLine;
+                }
 
                 System.out.print(tokenTypeName + " ");
             } while (true);

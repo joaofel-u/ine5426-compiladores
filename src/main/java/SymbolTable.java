@@ -25,8 +25,13 @@ public class SymbolTable {
 
     /* METHODS. */
     public void addLexeme(Token token) {
+        String key = token.getText();
         int tokenNameLength = token.getText().length();
         int tokenTypeLength = this.vocabulary.getSymbolicName(token.getType()).length();
+
+        /* Skips already present entries. */
+        if (table.containsKey(key))
+            return;
 
         /* Updates symbol table statistics. */
         if (tokenNameLength > this.longestTokenName)
@@ -35,7 +40,7 @@ public class SymbolTable {
         if (tokenTypeLength > this.longestTokenType)
             this.longestTokenType = tokenTypeLength;
 
-        table.put(token.getText(), new Symbol(token));
+        table.put(key, new Symbol(token));
     }
 
     public Symbol getEntry(String key) {
@@ -73,7 +78,7 @@ public class SymbolTable {
 
                 tokenName = token.getText();
                 tokenType = this.vocabulary.getSymbolicName(token.getType());
-                location = token.getLine() + ":" + token.getStartIndex();
+                location = token.getLine() + ":" + token.getCharPositionInLine();
             } else {
                 firstLine = true;
             }
