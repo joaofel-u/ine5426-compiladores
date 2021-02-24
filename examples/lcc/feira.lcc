@@ -1,9 +1,6 @@
 {
   print "Bem vindo a feira do Zeca, voce pode comprar no maximo 20 produtos";
 
-  /**
-   ** Teste de comentario.
-   */
   int opProduto;
   string produtos[20];
   float soma;

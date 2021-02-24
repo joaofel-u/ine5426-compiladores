@@ -26,9 +26,8 @@ Null	: 'null';
  */
 Ident          	: LETTER (LETTER | DIGIT)*;
 Int_constant	: DIGIT+;
-Float_constant	: DIGIT+ ('.' DIGIT*)?;
+Float_constant	: DIGIT+ ('.' DIGIT+)?;
 String_constant	: '"' ALPHABET* '"';
-Commentary  	: ('/*' ALPHABET* '*/') -> skip;
 Whitespace  	: WHITESPACE -> skip;
 
 /**

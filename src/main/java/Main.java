@@ -4,7 +4,10 @@ import java.nio.file.Paths;
 
 import main.antlr.MyGrammar;
 
+import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.Vocabulary;
 
@@ -28,16 +31,26 @@ class Main {
             MyGrammar myLexer;
             SymbolTable symbolTable;
             Vocabulary vocabulary;
+            String listOfTokens;
             int lastLine;
 
             myLexer = new MyGrammar(CharStreams.fromFileName(dir+filename));
             vocabulary = myLexer.getVocabulary();
 
+            /* Configurates error handling. */
+            myLexer.removeErrorListeners();
+            myLexer.addErrorListener(new BaseErrorListener() {
+                @Override
+                public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
+                    throw new RuntimeException(msg + " found in " + line + ":" + charPositionInLine);
+                }
+            });
+
+            /* Initializes symbol table. */
             symbolTable = new SymbolTable(vocabulary);
 
-            System.out.println("-------------LIST OF TOKENS-------------");
-
             lastLine = 1;
+            listOfTokens = "";
 
             /* Reads all tokens from the input file. */
             do {
@@ -64,12 +77,17 @@ class Main {
 
                 /* Breaks line? */
                 if (presentLine != lastLine) {
-                    System.out.println("");
+                    listOfTokens += "\n";
                     lastLine = presentLine;
                 }
 
-                System.out.print(tokenTypeName + " ");
+                listOfTokens += tokenTypeName + " ";
             } while (true);
+
+            /* Starts printing the program output. */
+            System.out.println("-------------LIST OF TOKENS-------------");
+
+            System.out.print(listOfTokens);
 
             System.out.println("\n---------------------------");
 
@@ -78,8 +96,11 @@ class Main {
             System.out.print(symbolTable.toString());
 
             System.out.println("---------------------------");
+        } catch(RuntimeException ex) {
+            System.out.println("\n----------------\nException Caught!");
+            System.out.println(ex.getMessage());
         } catch(Exception ex) {
-            System.out.println("Exception Caught!");
+            System.out.println("\nException Caught!");
             ex.printStackTrace();
         }
     }
