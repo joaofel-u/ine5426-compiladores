@@ -7,61 +7,61 @@ lexer grammar MyGrammar;
 /**
  * Reserved words.
  */
-Def		: 'def';
-Int		: 'int';
-Float	: 'float';
+Def     : 'def';
+Int     : 'int';
+Float   : 'float';
 String	: 'string';
 Print	: 'print';
 Read	: 'read';
 Return	: 'return';
 Break	: 'break';
-If		: 'if';
+If  	: 'if';
 Else	: 'else';
-For		: 'for';
-New		: 'new';
+For 	: 'for';
+New 	: 'new';
 Null	: 'null';
 
 /**
  * Language elements.
  */
-Ident			: LETTER (LETTER | DIGIT)*;
+Ident          	: LETTER (LETTER | DIGIT)*;
 Int_constant	: DIGIT+;
 Float_constant	: DIGIT+ ('.' DIGIT*)?;
 String_constant	: '"' ALPHABET* '"';
-Commentary		: ('/*' ALPHABET* '*/') -> skip;
-Whitespace		: WHITESPACE -> skip;
+Commentary  	: ('/*' ALPHABET* '*/') -> skip;
+Whitespace  	: WHITESPACE -> skip;
 
 /**
  * Graphic signals.
  */
-Lparen		: '(';
-Rparen		: ')';
-Lbrace		: '{';
-Rbrace		: '}';
-Lbracket	: '[';
-Rbracket	: ']';
-Semicolon	: ';';
-Comma		: ',';
-Assign		: '=';
-Lesser		: '<';
-Greater		: '>';
-Lesserequal	: '<=';
-Greaterequal: '>=';
-Equal		: '==';
-Different	: '!=';
-Plus		: '+';
-Minus		: '-';
-Multiply	: '*';
-Divide		: '/';
-Module		: '%';
+Lparen          : '(';
+Rparen          : ')';
+Lbrace          : '{';
+Rbrace          : '}';
+Lbracket    	: '[';
+Rbracket    	: ']';
+Semicolon   	: ';';
+Comma           : ',';
+Assign          : '=';
+Lesser          : '<';
+Greater         : '>';
+Lesserequal 	: '<=';
+Greaterequal    : '>=';
+Equal           : '==';
+Different       : '!=';
+Plus            : '+';
+Minus           : '-';
+Multiply    	: '*';
+Divide          : '/';
+Module          : '%';
 
 /**
  * Fragments.
  */
-fragment DIGIT			: [0-9];
-fragment LETTER			: ([a-z] | [A-Z]);
-fragment PUNCTUATION	: ('.' | ',' | ':' | ';' | '!' | '?');
-fragment GRAPHICS		: ('$' | '&' | '@' | '#' | '%' | '{' | '}' | '[' | ']' | '(' | ')' | '|' | '_');
-fragment RELOPS			: ('+' | '-' | '*' | '/' | '>' | '<' | '=');
-fragment WHITESPACE		: (' ' | '\t' | '\n' | '\r')+;
-fragment ALPHABET		: (DIGIT | LETTER | PUNCTUATION | GRAPHICS | RELOPS | WHITESPACE);
+fragment DIGIT          : [0-9];
+fragment LETTER         : ([a-z] | [A-Z]);
+fragment PUNCTUATION    : ('.' | ',' | ':' | ';' | '!' | '?');
+fragment GRAPHICS       : ('$' | '&' | '@' | '#' | '%' | '{' | '}' | '[' | ']' | '(' | ')' | '|' | '_');
+fragment RELOPS         : ('+' | '-' | '*' | '/' | '>' | '<' | '=');
+fragment WHITESPACE     : (' ' | '\t' | '\n' | '\r')+;
+fragment ALPHABET       : (DIGIT | LETTER | PUNCTUATION | GRAPHICS | RELOPS | WHITESPACE);
