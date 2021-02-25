@@ -1,9 +1,30 @@
+/**
+ * Developed by:
+ *      @João_Fellipe_Uller
+ *      @Leonardo_Kreuch
+ *      @Uriel_Kindermann_Caminha
+ *
+ * This project was developed under the orientation of Prof. Álvaro Franco
+ * to be presented in the discipline Construção de Compiladores (INE5426),
+ * from the Departamento de Informática e Estatística (INE), course of
+ * Bacharelado em Ciências da Computação from Universidade Federal de Santa
+ * Catarina (UFSC), in the second semester of 2020 (2020-2) accordingly with
+ * Calendário Acadêmico Suplementar Excepcional, which establishes this as
+ * a special period, lectured in remote way in the beginning of 2021, due
+ * to pandemic situation.
+ *
+ * For more information about Copyrights, refer to the LICENSE file provided
+ * with the project sources.
+ */
+
 package main.java;
 
 import java.nio.file.Paths;
 
+// Generated Grammar
 import main.antlr.MyGrammar;
 
+// ANTLR Elements Imports
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.RecognitionException;
@@ -34,10 +55,11 @@ class Main {
             String listOfTokens;
             int lastLine;
 
+            /* Instantiates the ANTLR4 generated lexer. */
             myLexer = new MyGrammar(CharStreams.fromFileName(dir+filename));
             vocabulary = myLexer.getVocabulary();
 
-            /* Configurates error handling. */
+            /* Configures error handling. */
             myLexer.removeErrorListeners();
             myLexer.addErrorListener(new BaseErrorListener() {
                 @Override
@@ -51,6 +73,8 @@ class Main {
 
             lastLine = 1;
             listOfTokens = "";
+
+            // BEGINNING OF THE LEXICAL ANALYSIS
 
             /* Reads all tokens from the input file. */
             do {
@@ -81,8 +105,11 @@ class Main {
                     lastLine = presentLine;
                 }
 
+                /* Inserts the read token in the list of tokens. */
                 listOfTokens += tokenTypeName + " ";
             } while (true);
+
+            // ENDING OF THE LEXICAL ANALYSIS
 
             /* Starts printing the program output. */
             System.out.println("-------------LIST OF TOKENS-------------");

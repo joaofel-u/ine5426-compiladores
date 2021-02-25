@@ -1,3 +1,10 @@
+/**
+ * Developed by:
+ *      @João_Fellipe_Uller
+ *      @Leonardo_Kreuch
+ *      @Uriel_Kindermann_Caminha
+ */
+
 package main.java;
 
 import java.util.HashMap;
@@ -7,15 +14,17 @@ import java.util.Collection;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.Vocabulary;
 
-/* Defines a basic Symbol Table*/
+/**
+ * @brief Defines a basic Symbol Table.
+ */
 public class SymbolTable {
-    /* ATTRIBUTES. */
+    // ATTRIBUTES.
     private HashMap<String, Symbol> table;
     private Vocabulary vocabulary;
     private int longestTokenName;
     private int longestTokenType;
 
-    /* CLASS CONSTRUCTOR. */
+    // CLASS CONSTRUCTOR.
     public SymbolTable(Vocabulary vocabulary) {
         this.table = new HashMap<String, Symbol>();
         this.vocabulary = vocabulary;
@@ -23,7 +32,12 @@ public class SymbolTable {
         this.longestTokenType = 0;
     }
 
-    /* METHODS. */
+    // METHODS.
+    /**
+     * @brief Inserts a lexeme in the SymbolTable.
+     *
+     * @param token Base token to be inserted.
+     */
     public void addLexeme(Token token) {
         String key = token.getText();
         int tokenNameLength = token.getText().length();
@@ -40,13 +54,26 @@ public class SymbolTable {
         if (tokenTypeLength > this.longestTokenType)
             this.longestTokenType = tokenTypeLength;
 
+        /* Inserts the new symbol in the table map. */
         table.put(key, new Symbol(token));
     }
 
+    /**
+     * @brief Gets a specific entry of the SymbolTable based on its key.
+     *
+     * @param key Key of the target entry.
+     *
+     * @return The Symbol associated with @p key.
+     */
     public Symbol getEntry(String key) {
         return (table.get(key));
     }
 
+    /**
+     * @brief Elaborate a textual representation of the SymbolTable state.
+     *
+     * @return A String representing the actual state of the SymbolTable.
+     */
     public String toString() {
         String tokenName, tokenType, location;
         String result = "";
@@ -58,7 +85,7 @@ public class SymbolTable {
         tokenType = "TOKEN TYPE";
         location = "LOCATION";
 
-        /* Checks if these are not the longest strings in the table. */
+        /* Check if the headers are the longest strings in the table. */
         if (tokenName.length() > this.longestTokenName)
             this.longestTokenName = tokenName.length();
 
@@ -83,12 +110,14 @@ public class SymbolTable {
                 firstLine = true;
             }
 
+            /* Fills the attributes with whitespaces to achieve a tabular representation. */
             for (int i = tokenName.length(); i < this.longestTokenName; ++i)
                 tokenName += " ";
 
             for (int i = tokenType.length(); i < this.longestTokenType; ++i)
                 tokenType += " ";
 
+            /* Concatenates the new line in the result string. */
             result += tokenName + " | " + tokenType + " | " + location + "\n";
 
         } while (it.hasNext());

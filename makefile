@@ -1,3 +1,8 @@
+# Developed by:
+#      @João_Fellipe_Uller
+#      @Leonardo_Kreuch
+#      @Uriel_Kindermann_Caminha
+
 # Directories
 export ROOTDIR=$(CURDIR)
 export SRCDIR=$(ROOTDIR)/src
