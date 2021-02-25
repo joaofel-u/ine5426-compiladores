@@ -12,7 +12,7 @@ export ANTLR = $(LIBDIR)/antlr-4.9.1-complete.jar
 
 # Compiler and Compilation Flags
 export JC = javac
-export JCFLAGS = -g -d $(BINDIR) -classpath $(CLASSPATH)
+export JCFLAGS = -g -d $(BINDIR) -classpath $(CLASSPATH) -Werror
 
 # Execution Flags
 export JAVA = java
