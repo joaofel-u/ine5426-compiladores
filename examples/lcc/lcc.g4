@@ -1,3 +1,10 @@
+/**
+ * Developed by:
+ *      @João_Fellipe_Uller
+ *      @Leonardo_Kreuch
+ *      @Uriel_Kindermann_Caminha
+ */
+
 lexer grammar MyGrammar;
 
 @header {
@@ -26,7 +33,7 @@ Null	: 'null';
  */
 Ident          	: LETTER (LETTER | DIGIT)*;
 Int_constant	: DIGIT+;
-Float_constant	: DIGIT+ ('.' DIGIT+)?;
+Float_constant	: DIGIT+ '.' DIGIT+;
 String_constant	: '"' ALPHABET* '"';
 Whitespace  	: WHITESPACE -> skip;
 
