@@ -1,3 +1,4 @@
+def principal()
 {
   int op;
   int linhas;
@@ -121,4 +122,6 @@
       print matrizResultado[i][j];
     }
   }
+  
+  return;
 }
