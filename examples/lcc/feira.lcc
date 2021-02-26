@@ -1,5 +1,5 @@
 {
-  print "Bem vindo a feira do Zeca, voce pode comprar no maximo 20 produtos";
+  print "Bem vindo a feira do Zeca, voce pode comprar no maximo 20 produtos\n";
 
   int opProduto;
   string produtos[20];

@@ -34,7 +34,7 @@ Null	: 'null';
 Ident          	: LETTER (LETTER | DIGIT)*;
 Int_constant	: DIGIT+;
 Float_constant	: DIGIT+ '.' DIGIT+;
-String_constant	: '"' ALPHABET* '"';
+String_constant	: '"' ('\\' | ALPHABET)*? '"';
 Whitespace  	: WHITESPACE -> skip;
 
 /**
