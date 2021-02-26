@@ -124,10 +124,10 @@ class Main {
 
             System.out.println("---------------------------");
         } catch(RuntimeException ex) {
-            System.out.println("\n----------------\nException Caught!");
+            System.out.println("----------------\nException Caught!");
             System.out.println(ex.getMessage());
         } catch(Exception ex) {
-            System.out.println("\nException Caught!");
+            System.out.println("Exception Caught!");
             ex.printStackTrace();
         }
     }

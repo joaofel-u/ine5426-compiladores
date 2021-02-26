@@ -70,4 +70,4 @@ fragment PUNCTUATION    : ('.' | ',' | ':' | ';' | '!' | '?');
 fragment GRAPHICS       : ('$' | '&' | '@' | '#' | '%' | '{' | '}' | '[' | ']' | '(' | ')' | '|' | '_');
 fragment RELOPS         : ('+' | '-' | '*' | '/' | '>' | '<' | '=');
 fragment WHITESPACE     : (' ' | '\t' | '\n' | '\r')+;
-fragment ALPHABET       : (DIGIT | LETTER | PUNCTUATION | GRAPHICS | RELOPS | WHITESPACE);
+fragment ALPHABET       : (DIGIT | LETTER | PUNCTUATION | GRAPHICS | RELOPS | ' ');
