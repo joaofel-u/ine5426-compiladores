@@ -22,7 +22,7 @@ package main.java;
 import java.nio.file.Paths;
 
 // Generated Grammar
-import main.antlr.MyGrammar;
+import main.antlr.MyGrammarLexer;
 
 // ANTLR Elements Imports
 import org.antlr.v4.runtime.BaseErrorListener;
@@ -49,14 +49,14 @@ class Main {
 
         /* Compiler main code. */
         try {
-            MyGrammar myLexer;
+            MyGrammarLexer myLexer;
             SymbolTable symbolTable;
             Vocabulary vocabulary;
             String listOfTokens;
             int lastLine;
 
             /* Instantiates the ANTLR4 generated lexer. */
-            myLexer = new MyGrammar(CharStreams.fromFileName(dir+filename));
+            myLexer = new MyGrammarLexer(CharStreams.fromFileName(dir+filename));
             vocabulary = myLexer.getVocabulary();
 
             /* Configures error handling. */

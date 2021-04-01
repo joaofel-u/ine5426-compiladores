@@ -38,7 +38,7 @@ gerados pelo ANTLR, de modo a garantir que todas as classes sejam recompiladas.
 Em seguida, o utilitário fará uma cópia do arquivo da gramática que servirá de base
 para o programa compilador e invocará a ferramenta ANTLR para que a mesma gere os
 analisadores léxico e sintático, de acordo com o tipo da gramática especificada.
-Por padrão, a gramática compilada é a gramática ```LCC```, gramática especificada
+Por padrão, a gramática compilada é a gramática ```Conv_CC```, gramática especificada
 para o presente projeto. Por último, o utilitário Make fará a compilação de todas as
 classes do projeto, incluindo aquelas geradas pelo ANTLR, resultando num arquivo
 executável caso a compilação das classes aconteça sem nenhum erro.
@@ -50,7 +50,7 @@ especificada deve ter uma pasta de mesmo nome existindo no diretório ```example
 de um arquivo ```<gramatica_alvo>.g4``` dentro desta pasta que define a gramática, caso
 contrário um erro de Nome de Gramática Inválido será exibido e a compilação será abortada.
 **IMPORTANTE:** Esta funcionalidade existe apenas para fins de teste de desenvolvimento. Para
-a avaliação do projeto que utiliza a gramática ```LCC``` não existe a necessidade de
+a avaliação do projeto que utiliza a gramática ```Conv_CC``` não existe a necessidade de
 definição adicional nenhuma além dos comandos ```make``` ou ```make all``` em sua versão
 padrão.
 
@@ -60,19 +60,19 @@ Após compilado, para fazer a execução do programa deve se utilizar o comando 
 utilizando o parâmetro ```ARGS=<caminho_do_arquivo_de_teste>``` para selecionar o arquivo
 que servirá de entrada para o exercício-programa. Importante: O caminho do arquivo de teste
 passado como argumento deve ser *relativo à raiz do projeto*. Os programas teste disponibilizados
-para a linguagem LCC estão disponíveis na pasta ```examples/lcc```.
+para a linguagem Conv_CC estão disponíveis na pasta ```examples/conv_cc```.
 
-Para fazer o processo de compilação do arquivo ```feira.lcc```, disponibilizado como um dos
-três programas para teste: ```make run ARGS=examples/lcc/feira.lcc```.
+Para fazer o processo de compilação do arquivo ```feira.ccc```, disponibilizado como um dos
+três programas para teste: ```make run ARGS=examples/conv_cc/feira.ccc```.
 
-Para o programa ```imc.lcc```: ```make run ARGS=examples/lcc/imc.lcc```.
+Para o programa ```?```: ```make run ARGS=examples/conv_cc/?.ccc```.
 
-Por fim, para o programa ```matriz.lcc```: ```make run ARGS=examples/lcc/matriz.lcc```.
+Por fim, para o programa ```matriz.ccc```: ```make run ARGS=examples/conv_cc/matriz.ccc```.
 
-## Arquivos de teste LCC
+## Arquivos de teste CCC
 
-Como apresentado na seção anterior, os programas teste para a linguagem LCC encontram-se no
-diretório ```examples/lcc```, e consiste nos arquivos ```feira.lcc```, ```imc.lcc``` e
-```matriz.lcc```. O arquivo ```lcc.g4``` é o que contém a gramática que define a linguagem
-LCC e serve de entrada para a ferramenta ANTLR, não sendo, portanto, passível de ser utilizado
+Como apresentado na seção anterior, os programas teste para a linguagem ConvCC encontram-se no
+diretório ```examples/conv_cc```, e consiste nos arquivos ```feira.ccc```, ```?``` e
+```matriz.ccc```. O arquivo ```conv_cc.g4``` é o que contém a gramática que define a linguagem
+ConvCC e serve de entrada para a ferramenta ANTLR, não sendo, portanto, passível de ser utilizado
 como programa de teste.

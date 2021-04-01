@@ -34,7 +34,7 @@ ifneq (,$(wildcard $(lib)/*))
 endif
 
 # Parameters
-export GRAMMAR ?= lcc
+export GRAMMAR ?= conv_cc
 export ARGS ?=
 
 GRAMMARTMP = $(EXAMPLESDIR)/$(GRAMMAR)/$(GRAMMAR).g4
