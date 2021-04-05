@@ -1,7 +1,7 @@
 {
   print "Bem vindo a feira do Zeca, voce pode comprar no maximo 20 produtos\n";
 
-  int opProduto;
+  int (opProduto);
   string produtos[20];
   float soma;
   int quantidadeProdutos;

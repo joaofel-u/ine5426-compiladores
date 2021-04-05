@@ -84,7 +84,7 @@ factor: (
 		Lparen numexpression Rparen
 	);
 
-lvalue: Ident (Rbracket numexpression Rbracket)*;
+lvalue: Ident (Lbracket numexpression Rbracket)*;
 
 /**
  * Reserved words.
