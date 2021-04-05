@@ -12,17 +12,13 @@ import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
 
 public class SyntaxError {
-    private final Recognizer rec;
     private final Token token;
     private final int line;
-    private final int charPositionInLine;
     private final String msg;
 
     public SyntaxError(Recognizer<?, ?> recognizer, Token offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
-        this.rec = recognizer;
         this.token = offendingSymbol;
         this.line = line;
-        this.charPositionInLine = charPositionInLine;
         this.msg = msg;
     }
 
