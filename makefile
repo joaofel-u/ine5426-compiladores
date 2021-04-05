@@ -28,9 +28,9 @@ export JFLAGS = -classpath $(CLASSPATH)
 USERCLASSPATH=.
 
 # Criando classpath dinâmico
-TMPCLASSPATH=$(USERCLASSPATH):$(realpath $(BASE)$(BINDIR))
+TMPCLASSPATH=$(USERCLASSPATH):$(realpath $(BASE)$(BINDIR)):$(RSRCDIR)
 ifneq (,$(wildcard $(lib)/*))
-    CLASSPATH=$(TMPCLASSPATH):$(subst $(space),:,$(foreach jar,$(wildcard $(LIBDIR)/*.jar),$(realpath $(jar))))
+	CLASSPATH=$(TMPCLASSPATH):$(LIBDIR)/*
 endif
 
 # Parameters
