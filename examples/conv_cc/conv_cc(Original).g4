@@ -19,19 +19,17 @@ grammar MyGrammar;
 	superClass = T1Lexer;
 }*/
 
-program: statement | funclist | ;
+program: (statement | funclist)?;
 
-funclist: funcdef funclistaux;
-
-funclistaux: funclist | ;
+funclist: funcdef funclist | funcdef;
 
 funcdef: Def Ident Lparen paramlist Rparen Lbrace statelist Rbrace;
 
-paramlist:	vartype Ident paramlistaux | ;
-
-paramlistaux: Comma paramlist | ;
+paramlist:	((Int | Float | String) Ident Comma paramlist) |
+		    ((Int | Float | String) Ident)?;
 
 statement:
+	(
 		vardecl Semicolon       |
 		atribstat Semicolon     |
 		printstat Semicolon     |
@@ -41,23 +39,16 @@ statement:
 		forstat                 |
 		Lbrace statelist Rbrace |
 		Break Semicolon         |
-		Semicolon;
+		Semicolon
+	);
 
-vardecl: vartype Ident vardeclaux;
+vardecl: (Int | Float | String) Ident (Lbracket Int_constant Rbracket)*;
 
-vardeclaux: Lbracket Int_constant Rbracket vardeclaux | ;
-
-vartype: Int | Float | String;
-
-atribstat: lvalue Assign atribstataux;
-
-atribstataux: expression | allocexpression | funccall;
+atribstat: lvalue Assign ( expression | allocexpression | funccall);
 
 funccall: Ident Lparen paramlistcall Rparen;
 
-paramlistcall: Ident paramlistcallaux | ;
-
-paramlistcallaux: Comma paramlistcall | ;
+paramlistcall: ( Ident Comma paramlistcall | Ident)?;
 
 printstat: Print expression;
 
@@ -65,57 +56,35 @@ readstat: Read lvalue;
 
 returnstat: Return;
 
-ifstat: If Lparen expression Rparen statement ifstataux;
-
-ifstataux: Else statement | ;
+ifstat: If Lparen expression Rparen statement (Else statement)?;
 
 forstat: For Lparen atribstat Semicolon expression Semicolon atribstat Rparen statement;
 
-statelist: statement statelistaux;
+statelist: statement (statelist)?;
 
-statelistaux: statelist | ;
+allocexpression: New (Int | Float | String) (Lbracket numexpression Rbracket)+;
 
-allocexpression: New vartype Lbracket numexpression Rbracket allocexpressionaux;
+expression:
+	numexpression (
+		(Lesser | Greater | Lesserequal | Greaterequal | Equal | Different) numexpression
+	)?;
 
-allocexpressionaux: Lbracket numexpression Rbracket allocexpressionaux2 | ;
+numexpression: term ((Plus | Minus) term)*;
 
-allocexpressionaux2: Lbracket numexpression Rbracket allocexpressionaux | ;
+term: unaryexpr (( Multiply | Divide | Module) unaryexpr)*;
 
-expression: numexpression expressionaux;
+unaryexpr: (Plus | Minus)? factor;
 
-expressionaux: comparator numexpression | ;
+factor: (
+		Int_constant |
+		Float_constant |
+		String_constant |
+		Null |
+		lvalue |
+		Lparen numexpression Rparen
+	);
 
-comparator: 
-    Lesser       |
-    Greater      |
-    Lesserequal  |
-    Greaterequal |
-    Equal        |
-    Different    ;
-
-numexpression: term numexpressionaux;
-
-numexpressionaux: minusplus numexpression | ;
-
-term: unaryexpr termaux;
-
-termaux: operators unaryexpr termaux | ;
-
-minusplus: Plus | Minus;
-
-operators: Multiply | Divide | Module;
-
-unaryexpr: minusplus factor | factor;
-
-factor:
-    Int_constant                 |
-    Float_constant               |
-    String_constant              |
-    Null                         |
-    lvalue                       |
-    Lparen numexpression Rparen  ;
-
-lvalue: Ident allocexpressionaux;
+lvalue: Ident (Lbracket numexpression Rbracket)*;
 
 /**
  * Reserved words.
