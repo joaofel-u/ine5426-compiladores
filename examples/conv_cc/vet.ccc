@@ -1,10 +1,10 @@
 def principal()
 {
-
   int op;
   int qtd;
   float vet;
   int i;
+  int colunas;
   float el;
   float maior;
   float soma;
@@ -29,7 +29,7 @@ def principal()
 
   for (i = 0; i < colunas; i = i + 1)
   {
-    print "Digite o valor do elemento " + i + " do vetor";
+    print "Digite o valor do proximo elemento do vetor";
     read vet[i];
   }
 
@@ -49,8 +49,8 @@ def principal()
       }
     }
 
-    print("Maior elemento do vetor: " + maior);
-
+    print("Maior elemento do vetor: ");
+    print(maior);
   }
 
   if (op == 2)
@@ -69,15 +69,15 @@ def principal()
       }
     }
 
-    print("Menor elemento do vetor: " + menor);
-
+    print("Menor elemento do vetor: ");
+    print(menor);
   }
 
   if (op == 3)
   {
     print "Calcular a media dos valores";
     
-    soma = 0;
+    soma = 0.0;
   
     for (i = 0; i < qtd; i = i + 1)
     {
@@ -86,8 +86,8 @@ def principal()
 
     media = soma / qtd;
 
-    print("Media dos elementos do vetor: " + media);
-
+    print("Media dos elementos do vetor: ");
+    print(media);
   }
 
   if (op == 4)
@@ -113,7 +113,8 @@ def principal()
 
     if (achado == 1)
     {
-      print("Elemento encontrado na posicao: " + indiceAchado);
+      print("Elemento encontrado na posicao: ");
+      print(indiceAchado);
     }
     else
     {

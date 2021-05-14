@@ -1,0 +1,8 @@
+{
+    int teste;
+    int a;
+    int b;
+    int d;
+
+    teste = a + b + 31 + d;
+}

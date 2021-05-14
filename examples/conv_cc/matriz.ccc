@@ -25,14 +25,14 @@ def principal()
   {
     print "Soma de matrizes";
 
-    matriz = new float[linhas][colunas];
-    matriz2 = new float[linhas][colunas];
+    matriz = new int[linhas][colunas];
+    matriz2 = new int[linhas][colunas];
   
     for (i = 0; i < linhas; i = i + 1)
     {
       for (j = 0; j < colunas; j = j + 1)
       {
-        print "Digite o valor do elemento da matriz1, linha: " + (i + 1) + " coluna: " + (j + 1);
+        print "Digite o valor do proximo elemento da matriz1:";
         read matriz[i][j];
       }
     }
@@ -41,7 +41,7 @@ def principal()
     {
       for (j = 0; j < colunas; j = j + 1)
       {
-        print "Digite o valor do elemento da matriz2, linha: " + (i + 1) + " coluna: " + (j + 1);
+        print "Digite o valor do proximo elemento da matriz2:";
         read matriz2[i][j];
       }
     }
@@ -50,7 +50,7 @@ def principal()
     {
       for (j = 0; j < colunas; j = j + 1)
       {
-        matrizResultado[i][j] = matriz[i][j] + matriz[i][j];
+        matrizResultado[i][j] = matriz[i][j] + matriz2[i][j];
       }
     }
   }
@@ -59,14 +59,14 @@ def principal()
   {
     print "Subtracao de matrizes";
 
-    matriz = new float[linhas][colunas];
-    matriz2 = new float[linhas][colunas];
+    matriz = new int[linhas][colunas];
+    matriz2 = new int[linhas][colunas];
   
     for (i = 0; i < linhas; i = i + 1)
     {
       for (j = 0; j < colunas; j = j + 1)
       {
-        print "Digite o valor do elemento da matriz1, linha: " + (i + 1) + " coluna: " + (j + 1);
+        print "Digite o valor do proximo elemento da matriz1:";
         read matriz[i][j];
       }
     }
@@ -75,7 +75,7 @@ def principal()
     {
       for (j = 0; j < colunas; j = j + 1)
       {
-        print "Digite o valor do elemento da matriz2, linha: " + (i + 1) + " coluna: " + (j + 1);
+        print "Digite o proximo valor do elemento da matriz2: ";
         read matriz2[i][j];
       }
     }
@@ -92,14 +92,14 @@ def principal()
   if (op == 3)
   {
     print "Matriz transposta";
-    matriz = new float[linhas][colunas];
-    matrizResultado = new float[colunas][linhas];
+    matriz = new int[linhas][colunas];
+    matrizResultado = new int[colunas][linhas];
 
     for (i = 0; i < linhas; i = i + 1)
     {
       for (j = 0; j < colunas; j = j + 1)
       {
-        print "Digite o valor do elemento da linha: " + (i + 1) + " coluna: " + (j + 1);
+        print "Digite o valor do proximo elemento: ";
         read matriz[i][j];
       }
     }
@@ -116,7 +116,8 @@ def principal()
   print "Resultado: ";
   for (i = 0; i < linhas; i = i + 1)
   {
-    print "linha: " + i;
+    print "linha: ";
+    print i;
     for (j = 0; j < colunas; j = j + 1)
     {
       print matrizResultado[i][j];
