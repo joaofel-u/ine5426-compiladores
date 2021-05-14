@@ -1,5 +1,5 @@
 # Build All
-all: errors-all symbol-all analysers-all main-all
+all: errors-all symbol-all listeners-all analysers-all main-all
 
 # Cleans all
 clean:
@@ -16,3 +16,6 @@ analysers-all:
 
 main-all:
 	$(MAKE) -C main all
+
+listeners-all:
+	$(MAKE) -C listeners all
