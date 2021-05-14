@@ -5,7 +5,7 @@
  *      @Uriel_Kindermann_Caminha
  */
 
-package main.java;
+package main.java.analysers;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,6 +19,8 @@ import org.antlr.v4.runtime.Vocabulary;
 import org.javatuples.Pair;
 
 import main.antlr.MyGrammarLexer;
+
+import main.java.symbol_table.*;
 
 public class LexicalAnalysis {
     private final MyGrammarLexer myLexer;

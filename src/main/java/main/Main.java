@@ -17,9 +17,11 @@
  * with the project sources.
  */
 
-package main.java;
+package main.java.main;
 
 import java.nio.file.Paths;
+
+import main.java.analysers.*;
 
 class Main {
     public static void main(String args[]) {

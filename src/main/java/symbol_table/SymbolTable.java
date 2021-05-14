@@ -5,7 +5,7 @@
  *      @Uriel_Kindermann_Caminha
  */
 
-package main.java;
+package main.java.symbol_table;
 
 import java.util.HashMap;
 import java.util.Iterator;

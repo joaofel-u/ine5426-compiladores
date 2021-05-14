@@ -5,7 +5,7 @@
  *      @Uriel_Kindermann_Caminha
  */
 
-package main.java;
+package main.java.errors;
 
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;

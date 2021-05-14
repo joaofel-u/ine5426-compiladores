@@ -5,7 +5,7 @@
  *      @Uriel_Kindermann_Caminha
  */
 
-package main.java;
+package main.java.analysers;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -20,6 +20,8 @@ import org.javatuples.Pair;
 
 import main.antlr.MyGrammarLexer;
 import main.antlr.MyGrammarParser;
+
+import main.java.errors.*;
 
 public class SyntaticAnalysis {
     private final MyGrammarParser myParser;

@@ -5,7 +5,7 @@
  *      @Uriel_Kindermann_Caminha
  */
 
-package main.java;
+package main.java.errors;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -42,9 +42,9 @@ GRAMMARTMP = $(EXAMPLESDIR)/$(GRAMMAR)/$(GRAMMAR).g4
 # Rules
 default: all
 
-run: $(BINDIR)/main/java/Main.class
+run: $(BINDIR)/main/java/main/Main.class
 	cd $(BINDIR)
-	java $(JFLAGS) main.java.Main $(ARGS)
+	java $(JFLAGS) main.java.main.Main $(ARGS)
 
 all: clean make-dirs
 ifneq ("$(wildcard $(GRAMMARTMP))","")
