@@ -1,3 +1,8 @@
+# Developed by:
+#      @João_Fellipe_Uller
+#      @Leonardo_Kreuch
+#      @Uriel_Kindermann_Caminha
+
 # Directories
 export ROOTDIR=$(CURDIR)
 export SRCDIR=$(ROOTDIR)/src
@@ -12,7 +17,7 @@ export ANTLR = $(LIBDIR)/antlr-4.9.1-complete.jar
 
 # Compiler and Compilation Flags
 export JC = javac
-export JCFLAGS = -g -d $(BINDIR) -classpath $(CLASSPATH)
+export JCFLAGS = -g -d $(BINDIR) -classpath $(CLASSPATH) -Werror
 
 # Execution Flags
 export JAVA = java
@@ -23,13 +28,13 @@ export JFLAGS = -classpath $(CLASSPATH)
 USERCLASSPATH=.
 
 # Criando classpath dinâmico
-TMPCLASSPATH=$(USERCLASSPATH):$(realpath $(BASE)$(BINDIR))
+TMPCLASSPATH=$(USERCLASSPATH):$(realpath $(BASE)$(BINDIR)):$(RSRCDIR)
 ifneq (,$(wildcard $(lib)/*))
-    CLASSPATH=$(TMPCLASSPATH):$(subst $(space),:,$(foreach jar,$(wildcard $(LIBDIR)/*.jar),$(realpath $(jar))))
+	CLASSPATH=$(TMPCLASSPATH):$(LIBDIR)/*
 endif
 
 # Parameters
-export GRAMMAR ?= lcc
+export GRAMMAR ?= conv_cc
 export ARGS ?=
 
 GRAMMARTMP = $(EXAMPLESDIR)/$(GRAMMAR)/$(GRAMMAR).g4
@@ -37,9 +42,9 @@ GRAMMARTMP = $(EXAMPLESDIR)/$(GRAMMAR)/$(GRAMMAR).g4
 # Rules
 default: all
 
-run: $(BINDIR)/main/java/Main.class
+run: $(BINDIR)/main/java/main/Main.class
 	cd $(BINDIR)
-	java $(JFLAGS) main.java.Main $(ARGS)
+	java $(JFLAGS) main.java.main.Main $(ARGS)
 
 all: clean make-dirs
 ifneq ("$(wildcard $(GRAMMARTMP))","")

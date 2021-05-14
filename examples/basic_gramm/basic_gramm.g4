@@ -1,36 +1,25 @@
-lexer grammar MyGrammar;
+grammar MyGrammar;
 
 @header {
     package main.antlr;
 }
 
-T_EOF
-        : ';'
-        ;
+program  : (Ident | T_num) (relop (Ident | T_num))+ T_EOF;
 
-T_mais
-        : '+'
-        ;
+relop : T_mais | T_menos | T_vezes | T_divi; 
 
-T_vezes
-        : '*'
-        ;
+T_EOF : ';';
 
-T_menos
-        : '-'
-        ;
+T_mais : '+';
 
-T_divi
-        : '/'
-        ;
+T_vezes : '*';
 
-T_num
-        : ('0'..'9')+
-        ;
+T_menos : '-';
 
-Ident
-        : (('a'..'z') | ('A'..'Z')) (('a'..'z') | ('A'..'Z') | ('0'..'9'))*
-        ;
+T_divi : '/';
 
-T_space
-        : (' ' | '\t' | '\n' | '\r') -> skip ;
+T_num : ('0'..'9')+;
+
+Ident : (('a'..'z') | ('A'..'Z')) (('a'..'z') | ('A'..'Z') | ('0'..'9'))*;
+
+T_space : (' ' | '\t' | '\n' | '\r') -> skip ;
