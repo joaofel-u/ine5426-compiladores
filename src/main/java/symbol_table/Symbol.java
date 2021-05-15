@@ -77,7 +77,6 @@ public class Symbol {
 
     @Override
     public String toString() {
-        int symbolicType;
         String type = "";
         String location;
         String name = this.lexeme;
@@ -90,8 +89,6 @@ public class Symbol {
             return (name + " | " + type);
         }
 
-        //symbolicType = this.vocabulary.getSymbolicName(token.getType());;
-        symbolicType = token.getType();
         location = token.getLine() + ":" + token.getCharPositionInLine();
 
         return (name + " | " + type + " | " + location);

@@ -24,14 +24,12 @@ public class SymbolTable {
     private Stack<Scope> scopes;
 
     private int longestTokenName;
-    private int longestTokenType = 8;
 
     // CLASS CONSTRUCTOR.
     public SymbolTable() {
         this.scopes = new Stack<>();
 
         this.longestTokenName = 0;
-        this.longestTokenType = 0;
     }
 
     // METHODS.
