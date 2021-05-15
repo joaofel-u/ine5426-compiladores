@@ -71,6 +71,18 @@ public class SymbolTable {
         scopes.lastElement().addSymbol(key, new Symbol(token, type));
     }
 
+    public void addFunc(Token token, TokenType type) {
+        String key = token.getText();
+        int tokenNameLength = token.getText().length();
+
+        /* Updates symbol table statistics. */
+        if (tokenNameLength > this.longestTokenName)
+            this.longestTokenName = tokenNameLength;
+
+        /* Inserts the new symbol in the scope map. */
+        scopes.firstElement().addSymbol(key, new Symbol(token, type));
+    }
+
     public boolean isInside(ScopeType type) {
         return scopes.stream().filter(scope -> scope.getType() == type).findAny().isPresent();
     }

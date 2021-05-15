@@ -74,7 +74,7 @@ public class SymbolListener extends MyGrammarBaseListener {
         if (!optional.isEmpty()){
             throw new RuntimeException("Declaration error in line " + line + ": \"" + varName.getText() + "\" already declared.");
         } else {
-            table.addSymbol(varName, TokenType.FUNCTION);
+            table.addFunc(varName, TokenType.FUNCTION);
         }
     }
 
@@ -94,8 +94,12 @@ public class SymbolListener extends MyGrammarBaseListener {
 
             /* Is it a regular atrib? */
             if (ctx.atribstataux().expression() == null) {
-                lastT = ctx.atribstataux().allocexpression().vartype().start;
-                t2 = getFromWord(lastT.getText());
+                if (ctx.atribstataux().allocexpression() == null) {
+                    return;
+                } else {
+                    lastT = ctx.atribstataux().allocexpression().vartype().start;
+                    t2 = getFromWord(lastT.getText());
+                }
             } else {
                 lastT = ctx.atribstataux().expression().start;
 
@@ -126,7 +130,6 @@ public class SymbolListener extends MyGrammarBaseListener {
         Optional<Symbol> optional = table.findSymbol(ctx.Ident().getText());
         if(optional.isEmpty())
         {
-            System.out.println("Teste");
             throw new RuntimeException("Error: Undeclared identifier \"" + ctx.Ident().getText() + "\" in line " + ctx.start.getLine());
         }
     }
