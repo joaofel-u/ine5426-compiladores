@@ -21,8 +21,9 @@ def principal()
   float valorBusca;
   int achado;
   int indiceAchado;
+  string menu;
 
-  printMenu();
+  menu = printMenu();
 
   read op;
 

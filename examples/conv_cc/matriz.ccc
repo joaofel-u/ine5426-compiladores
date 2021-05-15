@@ -15,8 +15,9 @@ def principal()
   int matrizResultado;
   int i;
   int j;
+  string menu;
 
-  printMenu();
+  menu = printMenu();
   read op;
 
   print "Digite o numero de linhas da matriz";

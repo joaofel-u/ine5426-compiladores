@@ -21,13 +21,14 @@ def principal() {
   int quantidadeProdutos;
   int continua;
   int i;
+  string menu;
 
   soma = 0.0;
   quantidadeProdutos = 0;
   
   for (i = 0; i < 20; i = i + 1)
   {
-    printMenu();
+    menu = printMenu();
 
     quantidadeProdutos = quantidadeProdutos + 1;
     
