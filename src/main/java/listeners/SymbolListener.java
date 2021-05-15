@@ -18,6 +18,7 @@ import main.antlr.MyGrammarLexer;
 import main.antlr.MyGrammarParser.AllocexpressionContext;
 import main.antlr.MyGrammarParser.AtribstatContext;
 import main.antlr.MyGrammarParser.ExpressionContext;
+import main.antlr.MyGrammarParser.FuncdefContext;
 import main.antlr.MyGrammarParser.LvalueContext;
 import main.antlr.MyGrammarParser.NumexpressionContext;
 import main.antlr.MyGrammarParser.ParamlistContext;
@@ -38,24 +39,42 @@ public class SymbolListener extends MyGrammarBaseListener {
 
     @Override
     public void exitParamlist(ParamlistContext ctx) {
-        if (ctx.children != null) {
-            String type = ctx.children.get(0).getText();
-            String name = ctx.children.get(1).getText();
-            //table.addSymbol(name, TokenType.fromString(type));
-            table.addSymbol(name, TokenType.fromString(type));
+        if (ctx.Ident() != null) {
+            Token varType = ctx.vartype().start;
+            Token varName = ctx.Ident().getSymbol();
+            
+            table.addSymbol(varName, getFromWord(varType.getText()));
         }
     }
 
     @Override
     public void exitVardecl(VardeclContext ctx) {
-        String varType = ctx.children.get(0).getText();
-        String varName = ctx.children.get(1).getText();
+        Optional<Symbol> optional;
+        Token varType = ctx.vartype().start;
+        Token varName = ctx.Ident().getSymbol();
         int line = ctx.getStart().getLine();
 
-        if (table.checkScope(varName)){
-            throw new RuntimeException("Declaration error in line " + line + ": \"" + varName + "\" already declared.");
+        optional = table.findSymbol(varName.getText());
+
+        if (!optional.isEmpty()){
+            throw new RuntimeException("Declaration error in line " + line + ": \"" + varName.getText() + "\" already declared.");
         } else {
-            table.addSymbol(varName, TokenType.fromString(varType));
+            table.addSymbol(varName, getFromWord(varType.getText()));
+        }
+    }
+
+    @Override
+    public void exitFuncdef(FuncdefContext ctx) {
+        Optional<Symbol> optional;
+        Token varName = ctx.Ident().getSymbol();
+        int line = ctx.getStart().getLine();
+
+        optional = table.findSymbol(varName.getText());
+
+        if (!optional.isEmpty()){
+            throw new RuntimeException("Declaration error in line " + line + ": \"" + varName.getText() + "\" already declared.");
+        } else {
+            table.addSymbol(varName, TokenType.FUNCTION);
         }
     }
 
@@ -106,7 +125,10 @@ public class SymbolListener extends MyGrammarBaseListener {
     public void exitLvalue(LvalueContext ctx) {
         Optional<Symbol> optional = table.findSymbol(ctx.Ident().getText());
         if(optional.isEmpty())
+        {
+            System.out.println("Teste");
             throw new RuntimeException("Error: Undeclared identifier \"" + ctx.Ident().getText() + "\" in line " + ctx.start.getLine());
+        }
     }
 
     @Override
@@ -145,7 +167,9 @@ public class SymbolListener extends MyGrammarBaseListener {
             symbol = table.findSymbol(token.getText());
 
             if (symbol.isEmpty())
+            {
                 throw new RuntimeException("Error: Undeclared identifier \"" + token.getText() + "\" in line " + ctx.start.getLine());
+            }
 
             return (symbol.get().getType());
         }
@@ -175,6 +199,8 @@ public class SymbolListener extends MyGrammarBaseListener {
                 return (TokenType.FLOAT);
             case "string":
                 return (TokenType.STRING);
+            case "function":
+                return (TokenType.FUNCTION);
             default:
                 return (null);
         }

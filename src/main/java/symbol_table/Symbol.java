@@ -15,7 +15,7 @@ import org.antlr.v4.runtime.Token;
 public class Symbol {
 
     public enum TokenType {
-        INT, FLOAT, STRING;
+        INT, FLOAT, STRING, FUNCTION;
 
         public static TokenType fromString(String s) {
             switch (s) {
@@ -25,6 +25,8 @@ public class Symbol {
                     return (FLOAT);
                 case "string":
                     return (STRING);
+                case "function":
+                    return (FUNCTION);
                 default:
                     System.out.println("Unexpected token type.");
                     return (null);
@@ -92,6 +94,6 @@ public class Symbol {
         symbolicType = token.getType();
         location = token.getLine() + ":" + token.getCharPositionInLine();
 
-        return (name + " | " + symbolicType + " | " + type + " | " + location);
+        return (name + " | " + type + " | " + location);
     }
 }

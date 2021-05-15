@@ -55,7 +55,9 @@ public class SymbolTable {
             // }
 
             if (scope.getVariables().size() > 0) {
-                System.out.println("------------\nEscopo do " + scope.getType().toString() + " da linha " + scope.getLine());
+                System.out.println("------------\nTabela de símbolos (Escopo " + scope.getType().toString() + " da linha " + scope.getLine() + ")");
+                System.out.println("LEXEMA     |     TIPO     |  LOCAL. DECLARAÇÃO");
+                
                 for (Symbol symbol : scope.getVariables())
                     System.out.println(symbol.toString());
 
@@ -102,9 +104,9 @@ public class SymbolTable {
         scopes.lastElement().addSymbol(lexeme, new Symbol(lexeme, type));
     }
 
-    public boolean checkScope(String symbol) {
-        return scopes.lastElement().containsSymbol(symbol);
-    }
+    // public boolean checkScope(String symbol) {
+    //     return scopes.lastElement().containsSymbol(symbol);
+    // }
 
     public boolean isInside(ScopeType type) {
         return scopes.stream().filter(scope -> scope.getType() == type).findAny().isPresent();
@@ -114,18 +116,6 @@ public class SymbolTable {
         return scopes.stream().map(scope -> scope.getVariables()).flatMap(Collection::stream)
                 .filter(symbol -> symbol.getLexeme().equals(s)).findAny();
     }
-
-    /**
-     * @brief Gets a specific entry of the SymbolTable based on its key.
-     *
-     * @param key Key of the target entry.
-     *
-     * @return The Symbol associated with @p key.
-     */
-    // public Symbol getEntry(String key) {
-    //     for (Scope scope : scopes.)
-    //     return (table.get(key));
-    // }
 
     /**
      * @brief Elaborate a textual representation of the SymbolTable state.
