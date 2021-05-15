@@ -1,3 +1,10 @@
+def printMenu() {
+  print "Escolha uma opcao: ";
+  print "1 - Soma de matriz";
+  print "2 - Subtracao de matriz";
+  print "3 - Matriz transposta";
+}
+
 def principal()
 {
   int op;
@@ -9,10 +16,7 @@ def principal()
   int i;
   int j;
 
-  print "Escolha uma opcao: ";
-  print "1 - Soma de matriz";
-  print "2 - Subtracao de matriz";
-  print "3 - Matriz transposta";
+  printMenu();
   read op;
 
   print "Digite o numero de linhas da matriz";

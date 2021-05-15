@@ -1,4 +1,18 @@
-{
+def printMenu() {
+  print "------ Lista de Produtos ------";
+  print "0 - Abobora - 3 reais";
+  print "1 - Abacaxi - 4 reais";
+  print "2 - Banana - 1 real";
+  print "3 - Cenoura - 0.80 real";
+  print "4 - Chuchu - 0.70 real";
+  print "5 - Ervilhas - 2 reais";
+  print "6 - Limao - 2.20 reais";
+  print "7 - Milho - 4.50 reais";
+  print "8 - Pessego - 1.50 real";
+  print "9 - Uva - 3.20 reais";
+}
+
+def principal() {
   print "Bem vindo a feira do Zeca, voce pode comprar no maximo 20 produtos\n";
 
   int opProduto;
@@ -13,17 +27,7 @@
   
   for (i = 0; i < 20; i = i + 1)
   {
-    print "------ Lista de Produtos ------";
-    print "0 - Abobora - 3 reais";
-    print "1 - Abacaxi - 4 reais";
-    print "2 - Banana - 1 real";
-    print "3 - Cenoura - 0.80 real";
-    print "4 - Chuchu - 0.70 real";
-    print "5 - Ervilhas - 2 reais";
-    print "6 - Limao - 2.20 reais";
-    print "7 - Milho - 4.50 reais";
-    print "8 - Pessego - 1.50 real";
-    print "9 - Uva - 3.20 reais";
+    printMenu();
 
     quantidadeProdutos = quantidadeProdutos + 1;
     

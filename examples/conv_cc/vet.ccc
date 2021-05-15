@@ -1,3 +1,11 @@
+def printMenu() {
+  print "Manipulacao de vetor, o que deseja fazer?";
+  print "1 - Pesquisar maior elemento";
+  print "2 - Pesquisar menor elemento";
+  print "3 - Calcular a media dos valores";
+  print "4 - Busca por elemento";
+}
+
 def principal()
 {
   int op;
@@ -14,11 +22,7 @@ def principal()
   int achado;
   int indiceAchado;
 
-  print "Manipulacao de vetor, o que deseja fazer?";
-  print "1 - Pesquisar maior elemento";
-  print "2 - Pesquisar menor elemento";
-  print "3 - Calcular a media dos valores";
-  print "4 - Busca por elemento";
+  printMenu();
 
   read op;
 
