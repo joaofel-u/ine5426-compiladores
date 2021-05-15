@@ -52,12 +52,6 @@ public class Symbol {
         this.lexeme = token.getText();
     }
 
-    public Symbol(String lexeme, TokenType type) {
-        this.token = null;
-        this.type = type;
-        this.lexeme = lexeme;
-    }
-
     // METHODS
     public Token getToken() {
         return (this.token);

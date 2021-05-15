@@ -28,14 +28,6 @@ public class ScopeListener extends MyGrammarBaseListener {
         table.exitScope();
     }
     
-    // @Override public void enterStatelist(MyGrammarParser.StatelistContext ctx) {
-    //     table.enterScope(ScopeType.STATELIST, ctx.start.getLine());
-    // }
-
-    // @Override public void exitStatelist(MyGrammarParser.StatelistContext ctx) {
-    //     table.exitScope();
-    // }
-    
     @Override public void enterForstat(MyGrammarParser.ForstatContext ctx) {
         table.enterScope(ScopeType.FOR, ctx.start.getLine());
     }

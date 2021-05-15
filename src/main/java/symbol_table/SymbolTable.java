@@ -40,18 +40,6 @@ public class SymbolTable {
     public void exitScope() {
         Scope scope = scopes.pop();
         try {
-            // File outputFile = new File(Constants.SYMBOL_TABLE_OUTPUT_PATH);
-            // if (!outputFile.exists())
-            //     outputFile.createNewFile();
-            // try (FileWriter fw = new FileWriter(outputFile, true);
-            //         BufferedWriter bw = new BufferedWriter(fw);
-            //         PrintWriter out = new PrintWriter(bw)) {
-            //     out.println("Symbol Table[" + scope.getType() + ":" + scope.getLine() + "]");
-            //     for (ScopeToken token : scope.getVariables()) {
-            //         out.println("Value: " + token.getLexValue() + " | Type: " + token.getType());
-            //     }
-            // }
-
             if (scope.getVariables().size() > 0) {
                 System.out.println("------------\nTabela de símbolos (Escopo " + scope.getType().toString() + " da linha " + scope.getLine() + ")");
                 System.out.println("LEXEMA     |     TIPO     |  LOCAL. DECLARAÇÃO");
@@ -75,10 +63,6 @@ public class SymbolTable {
         String key = token.getText();
         int tokenNameLength = token.getText().length();
 
-        /* Skips already present entries. */
-        // if (table.containsKey(key))
-        //     return;
-
         /* Updates symbol table statistics. */
         if (tokenNameLength > this.longestTokenName)
             this.longestTokenName = tokenNameLength;
@@ -86,25 +70,6 @@ public class SymbolTable {
         /* Inserts the new symbol in the scope map. */
         scopes.lastElement().addSymbol(key, new Symbol(token, type));
     }
-
-    public void addSymbol(String lexeme, TokenType type) {
-        int tokenNameLength = lexeme.length();
-
-        /* Skips already present entries. */
-        // if (table.containsKey(key))
-        //     return;
-
-        /* Updates symbol table statistics. */
-        if (tokenNameLength > this.longestTokenName)
-            this.longestTokenName = tokenNameLength;
-
-        /* Inserts the new symbol in the scope map. */
-        scopes.lastElement().addSymbol(lexeme, new Symbol(lexeme, type));
-    }
-
-    // public boolean checkScope(String symbol) {
-    //     return scopes.lastElement().containsSymbol(symbol);
-    // }
 
     public boolean isInside(ScopeType type) {
         return scopes.stream().filter(scope -> scope.getType() == type).findAny().isPresent();
