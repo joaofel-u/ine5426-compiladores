@@ -1,0 +1,19 @@
+def soma(int a, int b) {
+    int resultado;
+
+    resultado = a + b;
+
+    return;
+}
+
+def funct() {
+    int resultado;
+    int teste;
+    int a;
+    int b;
+    int d;
+
+    teste = a + b + 31 + d;
+
+    resultado = soma(a, b);
+}

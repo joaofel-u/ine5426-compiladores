@@ -9,33 +9,32 @@ package main.java.analysers;
 
 import java.io.IOException;
 import java.util.HashMap;
+//import java.util.List;
 
-import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.Vocabulary;
+//import org.antlr.v4.runtime.Vocabulary;
 import org.javatuples.Pair;
 
 import main.antlr.MyGrammarLexer;
-
+import main.java.errors.SyntaxErrorListener;
 import main.java.symbol_table.*;
 
 public class LexicalAnalysis {
     private final MyGrammarLexer myLexer;
     private final SymbolTable symbolTable;
-    private final Vocabulary vocabulary;
+    //private final Vocabulary vocabulary;
     private final HashMap<Integer, Pair<Integer, Integer>> lineDelimiters;
 
     public LexicalAnalysis(String filepath) throws IOException {
         this.myLexer = new MyGrammarLexer(CharStreams.fromFileName(filepath));
-        vocabulary = myLexer.getVocabulary();
-        this.symbolTable = new SymbolTable(vocabulary);
+        //vocabulary = myLexer.getVocabulary();
+        this.symbolTable = new SymbolTable();
 
         /* Configures error handling. */
         myLexer.removeErrorListeners();
-        myLexer.addErrorListener(new BaseErrorListener() {
+        myLexer.addErrorListener(new SyntaxErrorListener() {
             @Override
             public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
                 System.out.println("An error was found during lexical analysis");
@@ -56,45 +55,55 @@ public class LexicalAnalysis {
 
     public void analyse() throws RuntimeException {
         // BEGINNING OF THE LEXICAL ANALYSIS
-        int lastLine = 1;
-        Token lineFirstToken = null, lastToken = null;
+        // int lastLine = 1;
+        // Token lineFirstToken = null, lastToken = null;
+        //List<? extends Token> tokenList;
+        SyntaxErrorListener listener = (SyntaxErrorListener) myLexer.getErrorListeners().get(0);
+
+        //tokenList = this.myLexer.getAllTokens();
+        this.myLexer.getAllTokens();
+
+        if (listener.getSyntaxErrors().size() > 0)
+        {
+            System.out.println("Lexical errors were found...");
+        }
 
         /* Reads all tokens from the input file. */
-        do {
-            Token token;
-            String tokenTypeName;
+        // do {
+        //     Token token;
+        //     String tokenTypeName;
 
-            /* Get the next token. */
-            token = myLexer.nextToken();
-            tokenTypeName = vocabulary.getSymbolicName(token.getType());
+        //     /* Get the next token. */
+        //     token = myLexer.nextToken();
+        //     tokenTypeName = vocabulary.getSymbolicName(token.getType());
 
-            if (lineFirstToken == null)
-                lineFirstToken = token;
+        //     if (lineFirstToken == null)
+        //         lineFirstToken = token;
 
-            /* EOF? */
-            if (token.getType() == Token.EOF)
-            {
-                lineDelimiters.put(token.getLine(), new Pair<Integer, Integer>(lineFirstToken.getStartIndex(), token.getStopIndex()));
-                break;
-            }
+        //     /* EOF? */
+        //     if (token.getType() == Token.EOF)
+        //     {
+        //         lineDelimiters.put(token.getLine(), new Pair<Integer, Integer>(lineFirstToken.getStartIndex(), token.getStopIndex()));
+        //         break;
+        //     }
 
-            /* First token of a given line? */
-            if (token.getLine() != lastLine)
-            {
-                lineDelimiters.put(lastLine, new Pair<Integer, Integer>(lineFirstToken.getStartIndex(), lastToken.getStopIndex()));
-                lineFirstToken = token;
-            }
+        //     /* First token of a given line? */
+        //     if (token.getLine() != lastLine)
+        //     {
+        //         lineDelimiters.put(lastLine, new Pair<Integer, Integer>(lineFirstToken.getStartIndex(), lastToken.getStopIndex()));
+        //         lineFirstToken = token;
+        //     }
 
-            lastLine = token.getLine();
-            lastToken = token;
+        //     lastLine = token.getLine();
+        //     lastToken = token;
 
-            /**
-             * Is an identificator?
-             *
-             * @todo Textual compare?
-             **/
-            if (tokenTypeName == "Ident")
-                symbolTable.addLexeme(token);
-        } while (true);
+        //     /**
+        //      * Is an identificator?
+        //      *
+        //      * @todo Textual compare?
+        //      **/
+        //     if (tokenTypeName == "Ident")
+        //         symbolTable.addSymbol(token);
+        // } while (true);
     }
 }

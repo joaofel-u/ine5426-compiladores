@@ -40,7 +40,7 @@ statement:
 		ifstat                  |
 		forstat                 |
 		Lbrace statelist Rbrace |
-		Break Semicolon         |
+		breakstat               |
 		Semicolon;
 
 vardecl: vartype Ident vardeclaux;
@@ -65,9 +65,11 @@ readstat: Read lvalue;
 
 returnstat: Return;
 
-ifstat: If Lparen expression Rparen statement ifstataux;
+breakstat: Break Semicolon;
 
-ifstataux: Else statement | ;
+ifstat: If Lparen expression Rparen statement elsestat;
+
+elsestat: Else statement | ;
 
 forstat: For Lparen atribstat Semicolon expression Semicolon atribstat Rparen statement;
 
